@@ -44,12 +44,9 @@ raindrop_twig_loader:
         loaders_by_id:
             twig.filesystem_loader: 100
             twig.database_loader: 200
-```        
+```
 
-This will instruct the configuration to detach symfony router, attach chain router
-and append symfony standard router and the dynamic one.
-
-The dynamic router fetches and stores routes from/to database using Doctrine ORM.
+This configures twig chain loader and append those specified above.
 
 ### **USAGE**:
 
