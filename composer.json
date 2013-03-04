@@ -1,5 +1,5 @@
 {
-    "name": "raindrop/twig-loader-bundle",
+    "name": "raindrop/twigloader-bundle",
     "type": "symfony-bundle",
     "description": "Symfony Raindrop TwigLoaderBundle",
     "keywords": ["twig", "loader", "database", "doctrine"],
