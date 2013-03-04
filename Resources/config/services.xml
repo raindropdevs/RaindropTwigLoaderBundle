@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <parameters>
+        <parameter key="raindrop_twig_loader_bundle.twig_loader">Raindrop\TwigLoaderBundle\Loader\ChainLoader</parameter>
+        <parameter key="raindrop_twig_loader_bundle.db_twig_loader">Raindrop\TwigLoaderBundle\Loader\DatabaseTwigLoader</parameter>
+        <parameter key="raindrop_twig_loader_bundle.entity_class">Raindrop\TwigLoaderBundle\Entity\TwigTemplate</parameter>
+    </parameters>
+
+    <services>
+        <service id="twig.filesystem_loader" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
+            <argument type="service" id="templating.locator" />
+            <argument type="service" id="templating.name_parser" />
+        </service>
+
+        <service id="twig.database_loader" class="%raindrop_twig_loader_bundle.db_twig_loader%">
+            <argument type="service" id="templating.locator" />
+            <argument type="service" id="templating.name_parser" />
+            <call method="setEntityManager"><argument type="service" id="doctrine.orm.entity_manager"/></call>
+            <call method="setClassEntity"><argument>%raindrop_twig_loader_bundle.entity_class%</argument></call>
+        </service>
+
+        <service id="twig.loader" class="%raindrop_twig_loader_bundle.twig_loader%">
+            <argument type="collection">
+                <argument type="service" id="twig.database_loader" />
+                <argument type="service" id="twig.filesystem_loader" />
+            </argument>
+        </service>
+    </services>
+
+</container>
