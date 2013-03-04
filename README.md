@@ -39,12 +39,11 @@ Now the bundle is enabled.
 Add following lines to `app/config/config.yml`:
 
 ``` yaml
-raindrop_routing:
-  chain:
-    routers_by_id:
-      router.default: 100
-      raindrop_routing.dynamic_router: 10
-    replace_symfony_router: true
+raindrop_twig_loader:
+    chain:
+        loaders_by_id:
+            twig.filesystem_loader: 100
+            twig.database_loader: 200
 ```        
 
 This will instruct the configuration to detach symfony router, attach chain router
