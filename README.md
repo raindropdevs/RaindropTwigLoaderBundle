@@ -27,7 +27,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Raindrop\RoutingBundle\RaindropRoutingBundle(),
+        new Raindrop\TwigLoaderBundle\RaindropTwigLoaderBundle(),
     );
 }
 ```
