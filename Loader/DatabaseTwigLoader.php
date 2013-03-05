@@ -2,7 +2,9 @@
 
 namespace Raindrop\TwigLoaderBundle\Loader;
 
-class DatabaseTwigLoader implements \Twig_LoaderInterface, \Twig_ExistsLoaderInterface
+class DatabaseTwigLoader implements
+    \Twig_LoaderInterface,
+    \Twig_ExistsLoaderInterface
 {
     const DATABASE_ID = 'database:';
 
@@ -25,7 +27,9 @@ class DatabaseTwigLoader implements \Twig_LoaderInterface, \Twig_ExistsLoaderInt
         if ($this->isDatabaseTemplate($name)) {
             $id = $this->getDbName($name);
             if (false === $source = $this->getRecord($id)->getData()) {
-                throw new Twig_Error_Loader(sprintf('Template "%s" does not exist.', $name));
+                throw new Twig_Error_Loader(
+                        sprintf('Template "%s" does not exist.', $name)
+                );
             }
         }
 
@@ -43,7 +47,9 @@ class DatabaseTwigLoader implements \Twig_LoaderInterface, \Twig_ExistsLoaderInt
             }
 
             $id = $this->getDbName($name);
-            $record = $this->entityManager->getRepository('Raindrop\TwigLoaderBundle\Entity\TwigTemplate')->findOneByName($id);
+            $record = $this->entityManager
+                ->getRepository('Raindrop\TwigLoaderBundle\Entity\TwigTemplate')
+                ->findOneByName($id);
 
             // cache value while running to avoid further database access
             if ($record) {
@@ -55,15 +61,17 @@ class DatabaseTwigLoader implements \Twig_LoaderInterface, \Twig_ExistsLoaderInt
         return null;
     }
 
-    public function getCacheKey($name)
-    {
+    public function getCacheKey($name) {
         return $name;
     }
 
     protected function getLastUpdated($name) {
         if (!isset($this->hit[$name])) {
             $id = $this->getDbName($name);
-            $this->hit[$name] = $this->getRecord($id)->getUpdated()->getTimestamp();
+            $this->hit[$name] = $this
+                    ->getRecord($id)
+                    ->getUpdated()
+                    ->getTimestamp();
         }
         return $this->hit[$name];
     }
@@ -86,6 +94,8 @@ class DatabaseTwigLoader implements \Twig_LoaderInterface, \Twig_ExistsLoaderInt
     }
 
     protected function getRecord($name) {
-        return $this->entityManager->getRepository('Raindrop\TwigLoaderBundle\Entity\TwigTemplate')->findOneByName($name);
+        return $this->entityManager
+            ->getRepository('Raindrop\TwigLoaderBundle\Entity\TwigTemplate')
+            ->findOneByName($name);
     }
 }
