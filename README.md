@@ -1,3 +1,5 @@
+### WARNING: THIS BUNDLE IS NOT YET READY FOR PRODUCTION USE. ALL TESTS ARE MISSING AND THERE ARE ISSUES WITH OTHER BUNDLES INTEGRATION
+
 # Raindrop Twig Loader Bundle
 
 This bundle adds database support for twig templates. It substitutes Twig_Loader_FileSystem with Twig_Loader_Chain and appends Database and FileSystem loader.
