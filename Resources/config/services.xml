@@ -6,7 +6,7 @@
 
 
     <parameters>
-        <parameter key="raindrop_twig_loader_bundle.twig_loader">Raindrop\TwigLoaderBundle\Loader\ChainLoader</parameter>
+        <parameter key="raindrop_twig_loader_bundle.chain_loader">Raindrop\TwigLoaderBundle\Loader\ChainLoader</parameter>
         <parameter key="raindrop_twig_loader_bundle.db_twig_loader">Raindrop\TwigLoaderBundle\Loader\DatabaseTwigLoader</parameter>
         <parameter key="raindrop_twig_loader_bundle.entity_class">Raindrop\TwigLoaderBundle\Entity\TwigTemplate</parameter>
     </parameters>
@@ -24,11 +24,7 @@
             <call method="setClassEntity"><argument>%raindrop_twig_loader_bundle.entity_class%</argument></call>
         </service>
 
-        <service id="twig.loader" class="%raindrop_twig_loader_bundle.twig_loader%">
-            <argument type="collection">
-                <argument type="service" id="twig.database_loader" />
-                <argument type="service" id="twig.filesystem_loader" />
-            </argument>
+        <service id="twig.chain_loader" class="%raindrop_twig_loader_bundle.chain_loader%">
         </service>
     </services>
 
