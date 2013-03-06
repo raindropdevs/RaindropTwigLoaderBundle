@@ -24,11 +24,14 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('loaders_by_id')
-                            ->defaultValue(array('twig.filesystem_loader' => 10))
+                            ->defaultValue(array(
+                                'raindrop_twig.loader.filesystem' => 10,
+                                'raindrop_twig.loader.database' => 20
+                            ))
                             ->useAttributeAsKey('id')
                             ->prototype('scalar')->end()
                         ->end()
-                        ->scalarNode('replace_twig_loader')->defaultFalse()->end()
+                        ->scalarNode('replace_twig_loader')->defaultTrue()->end()
                     ->end()
                 ->end()
             ->end()
