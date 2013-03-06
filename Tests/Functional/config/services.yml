@@ -1,0 +1,12 @@
+services:
+    templating.finder:
+        class: Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder
+        arguments: [@kernel, @templating.filename_parser, %kernel.root_dir%/Resources]
+    templating.globals:
+        class: Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables
+    templating.locator:
+        class: Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator
+    templating.name_parser:
+        class: Symfony\Bundle\FrameworkBundle\Templating\TemplateNameParser
+    templating.filename_parser:
+        class: Symfony\Bundle\FrameworkBundle\Templating\TemplateFilenameParser

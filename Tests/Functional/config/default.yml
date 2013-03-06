@@ -1,0 +1,8 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: framework.yml }
+    - { resource: monolog.yml }
+    - { resource: doctrine.yml }
+    - { resource: twig.yml }
+    - { resource: services.yml }
+    - { resource: chainloader.yml }

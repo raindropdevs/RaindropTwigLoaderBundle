@@ -1,0 +1,6 @@
+raindrop_twig_loader:
+    chain:
+        loaders_by_id:
+            raindrop_twig.loader.filesystem: 10 // this refers to sf2 standard template loader
+            raindrop_twig.loader.database: 20
+        replace_twig_loader: true
