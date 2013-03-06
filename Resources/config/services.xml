@@ -12,20 +12,19 @@
     </parameters>
 
     <services>
-        <service id="twig.filesystem_loader" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
+        <service id="raindrop_twig.loader.filesystem" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
             <argument type="service" id="templating.locator" />
             <argument type="service" id="templating.name_parser" />
         </service>
 
-        <service id="twig.database_loader" class="%raindrop_twig_loader_bundle.db_twig_loader%">
+        <service id="raindrop_twig.loader.database" class="%raindrop_twig_loader_bundle.db_twig_loader%">
             <argument type="service" id="templating.locator" />
             <argument type="service" id="templating.name_parser" />
             <call method="setEntityManager"><argument type="service" id="doctrine.orm.entity_manager"/></call>
             <call method="setClassEntity"><argument>%raindrop_twig_loader_bundle.entity_class%</argument></call>
         </service>
 
-        <service id="twig.chain_loader" class="%raindrop_twig_loader_bundle.chain_loader%">
-        </service>
+        <service id="raindrop_twig.loader.chain" class="%raindrop_twig_loader_bundle.chain_loader%"></service>
     </services>
 
 </container>

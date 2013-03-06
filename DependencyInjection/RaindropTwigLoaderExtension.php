@@ -23,27 +23,45 @@ class RaindropTwigLoaderExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
-
-        // Configuration logic takes place in here:
-        // detach twig filesystem loader, attach twig chain loader and
-        // append others loaders.
+        /**
+         * Configuration logic takes place in here:
+         * detach twig filesystem loader, attach twig chain loader and
+         * append others loaders.
+         */
         if ($config['chain']['replace_twig_loader']) {
-            $container->setAlias('twig.chain_loader', 'twig.loader');
-        }
 
-        // add the loaders defined in the configuration mapping
-        $twigChainLoader = $container->getDefinition('twig.loader');
+            $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+            $loader->load('services.xml');
 
-        // since twig chain loader doesn't feature priority order,
-        // sort before appending loaders.
-        $loaders = $this->sortLoaders($config);
+            /**
+             * Set some references to let other bundles hook to the proper
+             * loader.
+             */
+            $container->setAlias('twig.loader', 'raindrop_twig.loader.chain');
+            $container->setAlias('twig.loader.filesystem', 'raindrop_twig.loader.filesystem');
 
-        foreach ($loaders as $array) {
-            foreach ($array as $twigLoader) {
-                $twigChainLoader->addMethodCall('addLoader', array(new Reference($twigLoader)));
+            /**
+             * Add the loaders defined in the configuration mapping.
+             * Since twig chain loader doesn't feature priority sorting,
+             * sort them before appending.
+             */
+            $twigChainLoader = $container->getDefinition('raindrop_twig.loader.chain');
+            $loaders = $this->sortLoaders($config);
+
+            foreach ($loaders as $array) {
+                foreach ($array as $twigLoader) {
+                    $twigChainLoader->addMethodCall('addLoader', array(new Reference($twigLoader)));
+                }
             }
+
+            // @TODO bugfix: twig loader is not using default 'addMethodCall'
+            // from symfony twig extension.
+            // can't figure out why... knpmenubundle works properly
+            $reflClass = new \ReflectionClass('Symfony\Bridge\Twig\Extension\FormExtension');
+            $stdSfPath = dirname(dirname($reflClass->getFileName())).'/Resources/views/Form';
+            $container
+                ->getDefinition('raindrop_twig.loader.chain')
+                ->addMethodCall('addPath', array($stdSfPath));
         }
     }
 
