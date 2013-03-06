@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
                             ->useAttributeAsKey('id')
                             ->prototype('scalar')->end()
                         ->end()
-                        ->scalarNode('replace_twig_loader')->defaultTrue()->end()
+                        ->scalarNode('replace_twig_loader')->defaultFalse()->end()
                     ->end()
                 ->end()
             ->end()
