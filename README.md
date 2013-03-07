@@ -36,14 +36,15 @@ Now the bundle is enabled.
 
 ### **CONFIGURATION**:
 
-Add following lines to `app/config/config.yml`:
+This the default configuration and can be overridden in `app/config/config.yml`:
 
 ``` yaml
 raindrop_twig_loader:
     chain:
+        replace_twig_loader: true
         loaders_by_id:
-            twig.filesystem_loader: 100
-            twig.database_loader: 200
+            raindrop_twig.filesystem_loader: 10
+            raindrop_twig.database_loader: 20
 ```
 
 This configures twig chain loader and append those specified above.
