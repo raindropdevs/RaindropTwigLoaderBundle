@@ -21,7 +21,7 @@ class TwigTemplate implements TemplateInterface {
     protected $id;
 
     /**
-     * @ORM\Column
+     * @ORM\Column(unique=true)
      */
     protected $name;
 
