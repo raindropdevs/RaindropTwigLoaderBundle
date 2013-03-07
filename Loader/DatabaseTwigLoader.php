@@ -45,11 +45,8 @@ class DatabaseTwigLoader implements
             if (isset($this->hit[$name])) {
                 return true;
             }
-
             $id = $this->getDbName($name);
-            $record = $this->entityManager
-                ->getRepository('Raindrop\TwigLoaderBundle\Entity\TwigTemplate')
-                ->findOneByName($id);
+            $record = $this->getRecord($id);
 
             // cache value while running to avoid further database access
             if ($record) {
@@ -95,7 +92,7 @@ class DatabaseTwigLoader implements
 
     protected function getRecord($name) {
         return $this->entityManager
-            ->getRepository('Raindrop\TwigLoaderBundle\Entity\TwigTemplate')
+            ->getRepository($this->classEntity)
             ->findOneByName($name);
     }
 }
