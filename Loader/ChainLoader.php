@@ -5,9 +5,7 @@ namespace Raindrop\TwigLoaderBundle\Loader;
 use \Twig_Loader_Chain as BaseChainLoader;
 
 /**
- * This class exists to make TwigLoaderBundle compatible
- * with KnpMenuBundle @ https://github.com/KnpLabs/KnpMenuBundle
- * Bridges some methods to FileSystemLoader as most of bundles relies
+ * Bridges some methods to FileSystemLoader as some bundles relies
  * on its existence.
  */
 class ChainLoader extends BaseChainLoader {
