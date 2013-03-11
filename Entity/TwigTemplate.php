@@ -28,7 +28,7 @@ class TwigTemplate implements TemplateInterface {
     /**
      * @ORM\Column(type="text")
      */
-    protected $data;
+    protected $template;
 
     /**
      * @ORM\Column(type="datetime")
@@ -56,9 +56,9 @@ class TwigTemplate implements TemplateInterface {
      * @param string $data
      * @return TwigTemplate
      */
-    public function setData($data)
+    public function setTemplate($template)
     {
-        $this->data = $data;
+        $this->template = $template;
 
         return $this;
     }
@@ -68,9 +68,9 @@ class TwigTemplate implements TemplateInterface {
      *
      * @return string
      */
-    public function getData()
+    public function getTemplate()
     {
-        return $this->data;
+        return $this->template;
     }
 
     /**
