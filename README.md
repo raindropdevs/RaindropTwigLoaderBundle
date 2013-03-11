@@ -1,5 +1,7 @@
 # Raindrop Twig Loader Bundle
 
+[![Build Status](https://travis-ci.org/raindropdevs/RaindropTwigLoaderBundle.png?branch=master)](https://travis-ci.org/raindropdevs/RaindropTwigLoaderBundle)
+
 This bundle adds database support for twig templates. It substitutes Twig_Loader_FileSystem with Twig_Loader_Chain and appends Database and FileSystem loader.
 To load from database, use database:<name> syntax into render method.
 
