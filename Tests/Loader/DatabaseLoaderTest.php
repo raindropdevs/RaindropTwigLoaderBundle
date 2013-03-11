@@ -107,7 +107,7 @@ class RecordStub
         return new \DateTime;
     }
 
-    public function getData() {
+    public function getTemplate() {
         return '<p>Hello {{ user }}</p>';
     }
 }

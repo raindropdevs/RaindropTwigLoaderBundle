@@ -26,7 +26,7 @@ class DatabaseTwigLoader implements
     {
         if ($this->isDatabaseTemplate($name)) {
             $id = $this->getDbName($name);
-            if (false === $source = $this->getRecord($id)->getData()) {
+            if (false === $source = $this->getRecord($id)->getTemplate()) {
                 throw new Twig_Error_Loader(
                         sprintf('Template "%s" does not exist.', $name)
                 );
