@@ -63,4 +63,4 @@ class myController {
 }
 ```
 
-The database loader will load the template using <entity>::getData() method and pass result to controller render method.
+The database loader will load the template using <entity>::getTemplate() method and pass result to controller render method.
