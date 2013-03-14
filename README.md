@@ -12,7 +12,7 @@ First add the dependency to your `composer.json` file:
 
     "require": {
         ...
-        "raindrop/twig-loader-bundle": "dev-master"
+        "raindrop/twigloader-bundle": "dev-master"
     },
 
 Then install the bundle with the command:
