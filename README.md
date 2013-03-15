@@ -41,6 +41,15 @@ Now the bundle is enabled.
 This the default configuration and can be overridden in `app/config/config.yml`:
 
 ``` yaml
+doctrine:
+  dbal:
+    types:
+      json: Sonata\Doctrine\Types\JsonType
+```
+
+and
+
+``` yaml
 raindrop_twig_loader:
     chain:
         replace_twig_loader: true
