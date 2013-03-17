@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Raindrop\TwigLoaderBundle\Entity\TwigTemplateRepository")
  * @ORM\Table(name="twig_template")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -24,6 +24,11 @@ class TwigTemplate implements TemplateInterface {
      * @ORM\Column(unique=true)
      */
     protected $name;
+
+    /**
+     * @ORM\Column
+     */
+    protected $type;
 
     /**
      * @ORM\Column(type="text")
@@ -140,5 +145,28 @@ class TwigTemplate implements TemplateInterface {
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return TwigTemplate
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

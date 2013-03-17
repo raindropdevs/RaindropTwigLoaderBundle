@@ -9,6 +9,7 @@
         <parameter key="raindrop_twig_loader_bundle.chain_loader">Raindrop\TwigLoaderBundle\Loader\ChainLoader</parameter>
         <parameter key="raindrop_twig_loader_bundle.db_twig_loader">Raindrop\TwigLoaderBundle\Loader\DatabaseTwigLoader</parameter>
         <parameter key="raindrop_twig_loader_bundle.entity_class">Raindrop\TwigLoaderBundle\Entity\TwigTemplate</parameter>
+        <parameter key="raindrop_twig_loader_bundle.repository_class">Raindrop\TwigLoaderBundle\Entity\TwigTemplateRepository</parameter>
     </parameters>
 
     <services>
@@ -25,6 +26,24 @@
         </service>
 
         <service id="raindrop_twig.loader.chain" class="%raindrop_twig_loader_bundle.chain_loader%"></service>
+
+        <service id="raindrop_twig.template_repository" factory-service="doctrine.orm.entity_manager" factory-method="getRepository" class="%raindrop_twig_loader_bundle.repository_class%">
+            <argument>%raindrop_twig_loader_bundle.entity_class%</argument>
+        </service>
+
+
+       <service id="raindrop_twig.admin.template" class="Raindrop\TwigLoaderBundle\Admin\TwigTemplateAdmin">
+
+          <argument />
+          <argument>%raindrop_twig_loader_bundle.entity_class%</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+
+          <tag name="sonata.admin" manager_type="orm" group="template" label="template"/>
+
+          <call method="setTranslationDomain">
+              <argument>RaindropTwigLoaderBundle</argument>
+          </call>
+      </service>
     </services>
 
 </container>
