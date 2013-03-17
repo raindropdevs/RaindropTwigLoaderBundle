@@ -26,6 +26,11 @@ class TwigTemplate implements TemplateInterface {
     protected $name;
 
     /**
+     * @ORM\Column
+     */
+    protected $type;
+
+    /**
      * @ORM\Column(type="text")
      */
     protected $template;
@@ -140,5 +145,28 @@ class TwigTemplate implements TemplateInterface {
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return TwigTemplate
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
