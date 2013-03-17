@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Raindrop\TwigLoaderBundle\Entity\TwigTemplateRepository")
  * @ORM\Table(name="twig_template")
  * @ORM\HasLifecycleCallbacks()
  */
