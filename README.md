@@ -8,7 +8,7 @@ To load from database, use database:<name> syntax into render method.
 
 ### **INSTALLATION**:
 
-First add the dependency to your `composer.json` file:
+First add the dependency to your composer.json` file:
 
     "require": {
         ...
@@ -35,6 +35,8 @@ public function registerBundles()
 ```
 
 Now the bundle is enabled.
+
+There is also a `TwigTemplateAdmin` class activated only if `SonataAdmin` bundle is enabled in your AppKernel.php.
 
 ### **CONFIGURATION**:
 
