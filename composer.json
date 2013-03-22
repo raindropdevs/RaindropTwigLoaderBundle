@@ -29,6 +29,9 @@
         "symfony/twig-bundle": "2.1.x@dev",
         "symfony/twig-bridge": "2.1.x@dev"
     },
+    "suggests": {
+        "sonata-project/admin-bundle": "Sonata Admin support"
+    },
     "autoload": {
         "psr-0": { "Raindrop\\TwigLoaderBundle": "" }
     },
