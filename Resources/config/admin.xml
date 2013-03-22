@@ -9,6 +9,7 @@
         <parameter key="raindrop_twig_loader_bundle.admin.class">Raindrop\TwigLoaderBundle\Admin\TwigTemplateAdmin</parameter>
     </parameters>
 
+    <services>
        <service id="raindrop_twig.admin.template" class="%raindrop_twig_loader_bundle.admin.class%">
 
           <argument />
