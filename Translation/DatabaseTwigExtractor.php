@@ -11,8 +11,6 @@
 
 namespace Raindrop\TwigLoaderBundle\Translation;
 
-use Symfony\Bridge\Twig\Translation\TwigExtractor;
-use Symfony\Component\Translation\Extractor\ExtractorInterface;
 use Symfony\Component\Translation\MessageCatalogue;
 use Doctrine\ORM\EntityManager;
 use Raindrop\TwigLoaderBundle\Entity\TemplateInterface;
@@ -20,7 +18,7 @@ use Raindrop\TwigLoaderBundle\Entity\TemplateInterface;
 /**
  * DatabaseTwigExtractor extracts translation messages from a twig template stored in the database.
  */
-class DatabaseTwigExtractor extends TwigExtractor
+class DatabaseTwigExtractor implements ExtractorInterface
 {
     /**
      * Default domain for found messages.
@@ -28,6 +26,24 @@ class DatabaseTwigExtractor extends TwigExtractor
      * @var string
      */
     private $defaultDomain = 'messages';
+
+    /**
+     * Prefix for found message.
+     *
+     * @var string
+     */
+    private $prefix = '';
+
+    /**
+     * The twig environment.
+     * @var \Twig_Environment
+     */
+    private $twig;
+
+    public function __construct(\Twig_Environment $twig)
+    {
+        $this->twig = $twig;
+    }
 
     /**
      * Set entityManager
@@ -63,4 +79,26 @@ class DatabaseTwigExtractor extends TwigExtractor
             $this->extractTemplate($file->getTemplate(), $catalogue);
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPrefix($prefix)
+    {
+        $this->prefix = $prefix;
+    }
+
+    protected function extractTemplate($template, MessageCatalogue $catalogue)
+    {
+        $visitor = $this->twig->getExtension('translator')->getTranslationNodeVisitor();
+        $visitor->enable();
+
+        $this->twig->parse($this->twig->tokenize($template));
+
+        foreach ($visitor->getMessages() as $message) {
+            $catalogue->set(trim($message[0]), $this->prefix.trim($message[0]), $message[1] ? $message[1] : $this->defaultDomain);
+        }
+
+        $visitor->disable();
+    }    
 }
