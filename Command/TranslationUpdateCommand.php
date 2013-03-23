@@ -21,8 +21,6 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * A command that parse templates to extract translation messages and add them into the translation files.
- *
- * @author Michel Salib <michelsalib@hotmail.com>
  */
 class TranslationUpdateCommand extends ContainerAwareCommand
 {
