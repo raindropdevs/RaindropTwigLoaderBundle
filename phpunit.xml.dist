@@ -16,7 +16,6 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory>.</directory>
             <exclude>
-                <file>RaindropRoutingBundle.php</file>
                 <directory>DependencyInjection/</directory>
                 <directory>Resources/</directory>
                 <directory>Tests/</directory>
