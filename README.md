@@ -56,8 +56,8 @@ raindrop_twig_loader:
     chain:
         replace_twig_loader: true
         loaders_by_id:
-            raindrop_twig.filesystem_loader: 10
-            raindrop_twig.database_loader: 20
+            raindrop_twig.loader.filesystem: 10
+            raindrop_twig.loader.database: 20
 ```
 
 This configures twig chain loader and append those specified above.
