@@ -14,15 +14,13 @@ namespace Raindrop\TwigLoaderBundle\Translation;
 use Symfony\Component\Translation\MessageCatalogue;
 
 /**
- * Extracts translation messages from a template directory to the catalogue.
+ * Extracts translation messages from a database to the catalogue.
  * New found messages are injected to the catalogue using the prefix.
- *
- * @author Michel Salib <michelsalib@hotmail.com>
  */
 interface ExtractorInterface
 {
     /**
-     * Extracts translation messages from a template directory to the catalogue.
+     * Extracts translation messages from a database to the catalogue.
      *
      * @param MessageCatalogue $catalogue The catalogue
      */
