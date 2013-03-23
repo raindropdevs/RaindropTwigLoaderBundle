@@ -10,6 +10,7 @@
         <parameter key="raindrop_twig_loader_bundle.db_twig_loader">Raindrop\TwigLoaderBundle\Loader\DatabaseTwigLoader</parameter>
         <parameter key="raindrop_twig_loader_bundle.entity_class">Raindrop\TwigLoaderBundle\Entity\TwigTemplate</parameter>
         <parameter key="raindrop_twig_loader_bundle.repository_class">Raindrop\TwigLoaderBundle\Entity\TwigTemplateRepository</parameter>
+        <parameter key="raindrop_twig_loader_bundle.translation.extractor.database.class">Raindrop\TwigLoaderBundle\Translation\DatabaseTwigExtractor</parameter>
     </parameters>
 
     <services>
@@ -21,14 +22,34 @@
         <service id="raindrop_twig.loader.database" class="%raindrop_twig_loader_bundle.db_twig_loader%">
             <argument type="service" id="templating.locator" />
             <argument type="service" id="templating.name_parser" />
-            <call method="setEntityManager"><argument type="service" id="doctrine.orm.entity_manager"/></call>
-            <call method="setClassEntity"><argument>%raindrop_twig_loader_bundle.entity_class%</argument></call>
+
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.entity_manager"/>
+            </call>
+
+            <call method="setClassEntity">
+                <argument>%raindrop_twig_loader_bundle.entity_class%</argument>
+            </call>
         </service>
 
         <service id="raindrop_twig.loader.chain" class="%raindrop_twig_loader_bundle.chain_loader%"></service>
 
         <service id="raindrop_twig.template_repository" factory-service="doctrine.orm.entity_manager" factory-method="getRepository" class="%raindrop_twig_loader_bundle.repository_class%">
             <argument>%raindrop_twig_loader_bundle.entity_class%</argument>
+        </service>
+
+        <service id="translation.extractor.database" class="%raindrop_twig_loader_bundle.translation.extractor.database.class%">
+            <argument type="service" id="twig" />
+
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.entity_manager"/>
+            </call>
+
+            <call method="setClassEntity">
+                <argument>%raindrop_twig_loader_bundle.entity_class%</argument>
+            </call>
+
+            <tag name="translation.extractor" alias="database" />
         </service>
     </services>
 
