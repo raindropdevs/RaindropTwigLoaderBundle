@@ -7,7 +7,7 @@
 >
 
     <testsuites>
-        <testsuite name="RaindropRoutingBundle Test Suite">
+        <testsuite name="RaindropTwigLoaderBundle Test Suite">
             <directory>./Tests</directory>
         </testsuite>
     </testsuites>
