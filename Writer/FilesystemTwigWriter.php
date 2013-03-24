@@ -3,9 +3,9 @@
 namespace Raindrop\TwigLoaderBundle\Writer;
 
 /**
- * TwigWriter writes twig loaded from database
+ * FilesystemTwigWriter writes twig loaded from database
  */
-class TwigWriter implements WriterInterface
+class FilesystemTwigWriter implements TwigWriterInterface
 {
     /**
      * {@inheritDoc}
@@ -47,7 +47,9 @@ class TwigWriter implements WriterInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Gets the file extension of the writer.
+     *
+     * @return string file extension
      */
     public function getExtension()
     {
