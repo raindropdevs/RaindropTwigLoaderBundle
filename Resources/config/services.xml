@@ -11,6 +11,7 @@
         <parameter key="raindrop_twig_loader_bundle.entity_class">Raindrop\TwigLoaderBundle\Entity\TwigTemplate</parameter>
         <parameter key="raindrop_twig_loader_bundle.repository_class">Raindrop\TwigLoaderBundle\Entity\TwigTemplateRepository</parameter>
         <parameter key="raindrop_twig_loader_bundle.translation.extractor.database.class">Raindrop\TwigLoaderBundle\Translation\DatabaseTwigExtractor</parameter>
+        <parameter key="raindrop_twig_loader_bundle.filesystem.writer.class">Raindrop\TwigLoaderBundle\Writer\TwigWriter</parameter>
     </parameters>
 
     <services>
@@ -31,6 +32,8 @@
                 <argument>%raindrop_twig_loader_bundle.entity_class%</argument>
             </call>
         </service>
+
+        <service id="raindrop_twig.filesystem.writer" class="%raindrop_twig_loader_bundle.filesystem.writer.class%"></service>
 
         <service id="raindrop_twig.loader.chain" class="%raindrop_twig_loader_bundle.chain_loader%"></service>
 

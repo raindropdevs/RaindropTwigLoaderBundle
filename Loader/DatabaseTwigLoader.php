@@ -95,4 +95,10 @@ class DatabaseTwigLoader implements
             ->getRepository($this->classEntity)
             ->findOneByName($name);
     }
+
+    public function findAll() {
+        return $this->entityManager
+            ->getRepository($this->classEntity)
+            ->findAll();
+    }
 }
