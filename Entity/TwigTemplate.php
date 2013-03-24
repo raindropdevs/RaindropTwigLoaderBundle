@@ -2,17 +2,15 @@
 
 namespace Raindrop\TwigLoaderBundle\Entity;
 
-use Raindrop\TwigLoaderBundle\Entity\TemplateInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * @ORM\Entity(repositoryClass="Raindrop\TwigLoaderBundle\Entity\TwigTemplateRepository")
+ * @ORM\Entity(repositoryClass="TwigTemplateRepository")
  * @ORM\Table(name="twig_template")
  * @ORM\HasLifecycleCallbacks()
  */
-class TwigTemplate implements TemplateInterface {
-
+class TwigTemplate implements TemplateInterface
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -102,16 +100,11 @@ class TwigTemplate implements TemplateInterface {
     }
 
     /**
-     * Set created
-     *
-     * @param \DateTime $created
-     * @return TwigTemplate
+     * @ORM\PrePersist
      */
-    public function setCreated($created)
+    public function setCreatedValue()
     {
-        $this->created = $created;
-
-        return $this;
+        $this->created = new \DateTime();
     }
 
     /**
@@ -125,16 +118,12 @@ class TwigTemplate implements TemplateInterface {
     }
 
     /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     * @return TwigTemplate
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
-    public function setUpdated($updated)
+    public function setUpdatedValue()
     {
-        $this->updated = $updated;
-
-        return $this;
+       $this->updated = new \DateTime();
     }
 
     /**
