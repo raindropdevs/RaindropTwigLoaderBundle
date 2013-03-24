@@ -13,5 +13,5 @@ interface TwigWriterInterface
      * @param array $twigs   Twig templates
      * @param array $options Options that are used by the writer
      */    
-    public function writeTwigs($twigs, $options = array());
+    public function writeTwigs(array $twigs, $options = array());
 }
