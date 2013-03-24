@@ -69,7 +69,7 @@ EOF
         // find all templates stored in database
         $twigs = $loader->findAll();
         
-        // show compiled list of messages
+        // show compiled list of twig files
         if ($input->getOption('dump-twigs') === true) {
             foreach ($twigs as $twig) {
                 $output->writeln(sprintf("\nDisplaying twig with name <info>%s</info>:\n", $twig->getName()));
