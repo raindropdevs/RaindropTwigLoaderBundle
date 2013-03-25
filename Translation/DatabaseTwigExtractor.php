@@ -47,10 +47,10 @@ class DatabaseTwigExtractor implements ExtractorInterface
 
     /**
      * Set entityManager
-     * 
-     * @param Doctrine\ORM\EntityManager $entityManager 
+     *
+     * @param Doctrine\ORM\EntityManager $entityManager
      */
-    public function setEntityManager($entityManager) 
+    public function setEntityManager($entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -58,12 +58,12 @@ class DatabaseTwigExtractor implements ExtractorInterface
     /**
      * Set classEntity
      *
-     * @param Raindrop\TwigLoaderBundle\Entity\TemplateInterface $classEntity 
+     * @param Raindrop\TwigLoaderBundle\Entity\TemplateInterface $classEntity
      */
-    public function setClassEntity($classEntity) 
+    public function setClassEntity($classEntity)
     {
         $this->classEntity = $classEntity;
-    }    
+    }
 
     /**
      * {@inheritDoc}
@@ -100,5 +100,5 @@ class DatabaseTwigExtractor implements ExtractorInterface
         }
 
         $visitor->disable();
-    }    
+    }
 }

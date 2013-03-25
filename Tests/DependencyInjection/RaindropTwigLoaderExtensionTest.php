@@ -4,12 +4,11 @@ namespace Raindrop\TwigLoaderBundle\Tests\DependencyInjection;
 
 use Raindrop\TwigLoaderBundle\DependencyInjection\RaindropTwigLoaderExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Config\Definition\Processor;
 
 class RaindropTwigLoaderExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @param array $config
+     * @param  array                                                   $config
      * @return \Symfony\Component\DependencyInjection\ContainerBuilder
      */
     protected function getBuilder(array $config = array())
@@ -114,8 +113,8 @@ class RaindropTwigLoaderExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($providedLoaders, $loadersAdded);
     }
 
-    public function testLoadNotActive() {
-
+    public function testLoadNotActive()
+    {
         $config = array(
             array(
                 'chain' => array(

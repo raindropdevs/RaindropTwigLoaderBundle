@@ -8,17 +8,20 @@ use \Twig_Loader_Chain as BaseChainLoader;
  * Bridges some methods to FileSystemLoader as some bundles relies
  * on its existence.
  */
-class ChainLoader extends BaseChainLoader {
-
-    public function addPaths($paths) {
+class ChainLoader extends BaseChainLoader
+{
+    public function addPaths($paths)
+    {
         foreach ($paths as $path) {
             $this->addPath($path);
         }
     }
 
-    public function addPath($path) {
+    public function addPath($path)
+    {
         if (is_array($path)) {
             $this->addPaths($path);
+
             return;
         }
 
@@ -29,7 +32,8 @@ class ChainLoader extends BaseChainLoader {
         }
     }
 
-    public function setPaths($paths, $namespace) {
+    public function setPaths($paths, $namespace)
+    {
         foreach ($this->loaders as $loader) {
             if ($loader instanceof \Twig_Loader_Filesystem) {
                 $loader->setPaths($paths, $namespace);
@@ -37,7 +41,8 @@ class ChainLoader extends BaseChainLoader {
         }
     }
 
-    public function prependPath($path, $namespace) {
+    public function prependPath($path, $namespace)
+    {
         foreach ($this->loaders as $loader) {
             if ($loader instanceof \Twig_Loader_Filesystem) {
                 $loader->prependPath($path, $namespace);

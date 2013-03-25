@@ -10,15 +10,18 @@ class DatabaseTwigLoader implements
 
     protected $idLength, $entityManager, $classEntity, $hit = array();
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->idLength = strlen(self::DATABASE_ID);
     }
 
-    public function setEntityManager($entityManager) {
+    public function setEntityManager($entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 
-    public function setClassEntity($classEntity) {
+    public function setClassEntity($classEntity)
+    {
         $this->classEntity = $classEntity;
     }
 
@@ -51,6 +54,7 @@ class DatabaseTwigLoader implements
             // cache value while running to avoid further database access
             if ($record) {
                 $this->hit[$name] = $record->getUpdated()->getTimestamp();
+
                 return true;
             }
         }
@@ -58,11 +62,13 @@ class DatabaseTwigLoader implements
         return null;
     }
 
-    public function getCacheKey($name) {
+    public function getCacheKey($name)
+    {
         return $name;
     }
 
-    protected function getLastUpdated($name) {
+    protected function getLastUpdated($name)
+    {
         if (!isset($this->hit[$name])) {
             $id = $this->getDbName($name);
             $this->hit[$name] = $this
@@ -70,6 +76,7 @@ class DatabaseTwigLoader implements
                     ->getUpdated()
                     ->getTimestamp();
         }
+
         return $this->hit[$name];
     }
 
@@ -82,15 +89,18 @@ class DatabaseTwigLoader implements
         return false;
     }
 
-    protected function isDatabaseTemplate($name) {
+    protected function isDatabaseTemplate($name)
+    {
         return substr($name, 0, $this->idLength) === self::DATABASE_ID;
     }
 
-    protected function getDbName($name) {
+    protected function getDbName($name)
+    {
         return substr($name, $this->idLength);
     }
 
-    protected function getRecord($name) {
+    protected function getRecord($name)
+    {
         return $this->entityManager
             ->getRepository($this->classEntity)
             ->findOneByName($name);

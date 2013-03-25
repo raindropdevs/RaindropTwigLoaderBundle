@@ -69,7 +69,8 @@ class RaindropTwigLoaderExtension extends Extension
         }
     }
 
-    protected function sortLoaders($config) {
+    protected function sortLoaders($config)
+    {
         $loaders = array();
 
         foreach ($config['chain']['loaders_by_id'] as $name => $priority) {
