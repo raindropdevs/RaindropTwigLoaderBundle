@@ -2,16 +2,14 @@
 
 namespace Raindrop\TwigLoaderBundle\Tests\Loader;
 
-
-use Symfony\Component\HttpFoundation\Request;
-
 use Raindrop\TwigLoaderBundle\Loader\ChainLoader;
 use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
 use Raindrop\TwigLoaderBundle\Tests\BaseTestCase;
 
 class ChainLoaderTest extends BaseTestCase
 {
-    public function testProxyMethods() {
+    public function testProxyMethods()
+    {
         $chainLoader = new ChainLoader;
 
         $fileSystemLoader = $this

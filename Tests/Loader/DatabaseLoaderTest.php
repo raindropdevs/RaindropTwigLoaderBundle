@@ -2,15 +2,13 @@
 
 namespace Raindrop\TwigLoaderBundle\Tests\Loader;
 
-
-use Symfony\Component\HttpFoundation\Request;
-
 use Raindrop\TwigLoaderBundle\Loader\DatabaseTwigLoader;
 use Raindrop\TwigLoaderBundle\Tests\BaseTestCase;
 
 class DatabaseTwigLoaderTest extends BaseTestCase
 {
-    protected function getDbLoader($parameter = 'test', $return = true) {
+    protected function getDbLoader($parameter = 'test', $return = true)
+    {
         $recordStub = new RecordStub;
 
         $entityRepository = $this
@@ -49,40 +47,39 @@ class DatabaseTwigLoaderTest extends BaseTestCase
         return $dbLoader;
     }
 
-
-    public function testExists() {
+    public function testExists()
+    {
         $dbLoader = $this->getDbLoader('test', true);
         $this->assertTrue($dbLoader->exists('database:test'));
     }
 
-
-    public function testDoesNotExists() {
+    public function testDoesNotExists()
+    {
         $dbLoader = $this->getDbLoader('no_test', false);
         $this->assertNull($dbLoader->exists('database:no_test'));
     }
-
 
     /**
      * There is test for 'getSource' method failure
      * because it depends on 'exists' method
      */
-    public function testGetSource() {
+    public function testGetSource()
+    {
         $dbLoader = $this->getDbLoader('test', true);
         $this->assertEquals('<p>Hello {{ user }}</p>', $dbLoader->getSource('database:test'));
     }
 
-
     /**
      * Trivial, for coverage sake.
      */
-    public function testGetCacheKey() {
+    public function testGetCacheKey()
+    {
        $dbLoader = new DatabaseTwigLoader;
        $this->assertEquals('my_cache_key', $dbLoader->getCacheKey('my_cache_key'));
     }
 
-
-    public function testIsFresh() {
-
+    public function testIsFresh()
+    {
         // unix epoch
         $longLongTimeAgoInAGalaxyFarAway = 0;
         $backToTheFuture = time() + 86400;
@@ -99,15 +96,18 @@ class DatabaseTwigLoaderTest extends BaseTestCase
 
 class RecordStub
 {
-    public function getName() {
+    public function getName()
+    {
         return 'stub_tpl';
     }
 
-    public function getUpdated() {
+    public function getUpdated()
+    {
         return new \DateTime;
     }
 
-    public function getTemplate() {
+    public function getTemplate()
+    {
         return '<p>Hello {{ user }}</p>';
     }
 }

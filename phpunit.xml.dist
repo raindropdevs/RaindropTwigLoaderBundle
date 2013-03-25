@@ -7,7 +7,7 @@
 >
 
     <testsuites>
-        <testsuite name="RaindropRoutingBundle Test Suite">
+        <testsuite name="RaindropTwigLoaderBundle Test Suite">
             <directory>./Tests</directory>
         </testsuite>
     </testsuites>
@@ -16,7 +16,6 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory>.</directory>
             <exclude>
-                <file>RaindropRoutingBundle.php</file>
                 <directory>DependencyInjection/</directory>
                 <directory>Resources/</directory>
                 <directory>Tests/</directory>

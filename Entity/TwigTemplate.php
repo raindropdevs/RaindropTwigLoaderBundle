@@ -5,14 +5,13 @@ namespace Raindrop\TwigLoaderBundle\Entity;
 use Raindrop\TwigLoaderBundle\Entity\TemplateInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * @ORM\Entity(repositoryClass="Raindrop\TwigLoaderBundle\Entity\TwigTemplateRepository")
  * @ORM\Table(name="twig_template")
  * @ORM\HasLifecycleCallbacks()
  */
-class TwigTemplate implements TemplateInterface {
-
+class TwigTemplate implements TemplateInterface
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -58,7 +57,7 @@ class TwigTemplate implements TemplateInterface {
     /**
      * Set data
      *
-     * @param string $data
+     * @param  string       $data
      * @return TwigTemplate
      */
     public function setTemplate($template)
@@ -81,7 +80,7 @@ class TwigTemplate implements TemplateInterface {
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string       $name
      * @return TwigTemplate
      */
     public function setName($name)
@@ -104,7 +103,7 @@ class TwigTemplate implements TemplateInterface {
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime    $created
      * @return TwigTemplate
      */
     public function setCreated($created)
@@ -127,7 +126,7 @@ class TwigTemplate implements TemplateInterface {
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime    $updated
      * @return TwigTemplate
      */
     public function setUpdated($updated)
@@ -150,20 +149,20 @@ class TwigTemplate implements TemplateInterface {
     /**
      * Set type
      *
-     * @param string $type
+     * @param  string       $type
      * @return TwigTemplate
      */
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {

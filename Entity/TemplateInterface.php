@@ -2,7 +2,8 @@
 
 namespace Raindrop\TwigLoaderBundle\Entity;
 
-interface TemplateInterface {
+interface TemplateInterface
+{
     public function getName();
     public function getType();
     public function getTemplate();
