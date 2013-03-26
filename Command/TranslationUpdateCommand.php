@@ -36,7 +36,7 @@ class TranslationUpdateCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('translation:database:update')
+            ->setName('raindrop:twig:translation:update')
             ->setDefinition(array(
                 new InputArgument('locale', InputArgument::REQUIRED, 'The locale'),
                 new InputArgument('bundle', InputArgument::REQUIRED, 'The bundle where to store the messages'),
@@ -57,7 +57,7 @@ class TranslationUpdateCommand extends ContainerAwareCommand
                     'Should the update be done'
                 )
             ))
-            ->setDescription('Updates the translation file')
+            ->setDescription('Updates the translation file fetching data from database')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command extract translation strings from templates
 stored in the database. It can display them or merge the new ones into the translation files.
