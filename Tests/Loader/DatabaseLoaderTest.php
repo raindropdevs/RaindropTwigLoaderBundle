@@ -7,39 +7,40 @@ use Raindrop\TwigLoaderBundle\Tests\BaseTestCase;
 
 class DatabaseTwigLoaderTest extends BaseTestCase
 {
-    protected function getDbLoader($parameter = 'test', $return = true)
+    protected function getDbLoader($parameter = 'test', $return = true, $theme = false)
     {
         $recordStub = new RecordStub;
-
-        $entityRepository = $this
-                ->getMockBuilder('\\Doctrine\\ORM\\EntityRepository')
-                ->setMethods(array('findOneByName'))
-                ->disableOriginalConstructor()
-                ->getMock()
-                ;
 
         $returnValue = false;
         if ($return) {
             $returnValue = $recordStub;
         }
 
-        $entityRepository
-                ->expects($this->once())
-                ->method('findOneByName')
-                ->with($this->equalTo($parameter))
-                ->will($this->returnValue($returnValue))
-                ;
+        if ($theme) {
+            $parameter.= '|'.$recordStub->getActiveTheme();
+        }
 
         $entityManager = $this
                 ->getMockBuilder('\\Doctrine\\ORM\\EntityManager')
                 ->disableOriginalConstructor()
                 ->getMock();
 
+        $entityRepository = $this
+                ->getMockBuilder('\\Doctrine\\ORM\\EntityRepository')
+                ->setMethods(array('findOneByName'))
+                ->disableOriginalConstructor()
+                ->getMock();
+
         $entityManager
                 ->expects($this->any())
                 ->method('getRepository')
-                ->will($this->returnValue($entityRepository))
-                ;
+                ->will($this->returnValue($entityRepository));
+
+        $entityRepository
+                ->expects($this->once())
+                ->method('findOneByName')
+                ->with($this->equalTo($parameter))
+                ->will($this->returnValue($returnValue));
 
         $dbLoader = new DatabaseTwigLoader;
         $dbLoader->setEntityManager($entityManager);
@@ -57,6 +58,12 @@ class DatabaseTwigLoaderTest extends BaseTestCase
     {
         $dbLoader = $this->getDbLoader('no_test', false);
         $this->assertNull($dbLoader->exists('database:no_test'));
+    }
+
+    public function testExistsWithTheme()
+    {
+        $dbLoader = $this->getDbLoader('test', true, true);
+        $this->assertTrue($dbLoader->exists('database:test|desktop'));
     }
 
     /**
@@ -109,5 +116,10 @@ class RecordStub
     public function getTemplate()
     {
         return '<p>Hello {{ user }}</p>';
+    }
+
+    public function getActiveTheme()
+    {
+        return 'desktop';
     }
 }
