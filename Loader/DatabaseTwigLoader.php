@@ -146,7 +146,7 @@ class DatabaseTwigLoader implements
 
             $template = $this->entityManager
                 ->getRepository($this->classEntity)
-                ->findOneByName($nameTheme);
+                ->findOneByName($nameAndTheme);
 
             if ($template) {
                 return $template;
