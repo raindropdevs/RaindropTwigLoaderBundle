@@ -8,7 +8,7 @@ class DatabaseTwigLoader implements
 {
     const DATABASE_ID = 'database:';
 
-    protected $idLength, $entityManager, $classEntity, $hit = array();
+    protected $idLength, $entityManager, $classEntity, $liipTheme, $hit = array();
 
     public function __construct()
     {
@@ -23,6 +23,40 @@ class DatabaseTwigLoader implements
     public function setClassEntity($classEntity)
     {
         $this->classEntity = $classEntity;
+    }
+
+    /**
+     * Adds ActiveTheme class form LiipThemeBundle
+     *
+     * @param Liip\ThemeBundle\ActiveTheme $liipTheme
+     */
+    public function addLiipTheme($liipTheme)
+    {
+        $this->liipTheme = $liipTheme;
+    }
+
+    /**
+     * Returns the liipTheme
+     *
+     * @return Liip\ThemeBundle\ActiveTheme|null
+     */
+    public function getLiipTheme()
+    {
+        return $this->liipTheme;
+    }
+
+    /**
+     * Returns the active theme
+     *
+     * @return string|null
+     */
+    public function getActiveTheme()
+    {
+        if ($this->getLiipTheme()) {
+            return $this->getLiipTheme()->getName();
+        } else {
+            return null;
+        }
     }
 
     public function getSource($name)
@@ -64,6 +98,10 @@ class DatabaseTwigLoader implements
 
     public function getCacheKey($name)
     {
+        if ($this->getLiipTheme()) {
+            $name.= '|'.$this->getLiipTheme()->getName();
+        }
+
         return $name;
     }
 
@@ -101,6 +139,20 @@ class DatabaseTwigLoader implements
 
     protected function getRecord($name)
     {
+        $theme = $this->getActiveTheme();
+
+        if ($theme) {
+            $nameAndTheme = $name . '|' . $theme;
+        }
+
+        $template = $this->entityManager
+            ->getRepository($this->classEntity)
+            ->findOneByName($nameTheme);
+
+        if ($template) {
+            return $template;
+        }
+
         return $this->entityManager
             ->getRepository($this->classEntity)
             ->findOneByName($name);
