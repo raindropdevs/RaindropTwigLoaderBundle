@@ -143,14 +143,14 @@ class DatabaseTwigLoader implements
 
         if ($theme) {
             $nameAndTheme = $name . '|' . $theme;
-        }
 
-        $template = $this->entityManager
-            ->getRepository($this->classEntity)
-            ->findOneByName($nameTheme);
+            $template = $this->entityManager
+                ->getRepository($this->classEntity)
+                ->findOneByName($nameTheme);
 
-        if ($template) {
-            return $template;
+            if ($template) {
+                return $template;
+            }
         }
 
         return $this->entityManager
