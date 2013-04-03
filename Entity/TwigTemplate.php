@@ -168,4 +168,12 @@ class TwigTemplate implements TemplateInterface
     {
         return $this->type;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf("%s", $this->getName());
+    }
 }
