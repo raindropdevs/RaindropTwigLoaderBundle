@@ -1,0 +1,15 @@
+/*
+    Document   : admin
+    Created on : Apr 11, 2013, 5:57:05 PM
+    Author     : teito
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root {
+    display: block;
+}
+
+.controls .raindropTemplateTextarea {
+    min-height: 800px;
+}
