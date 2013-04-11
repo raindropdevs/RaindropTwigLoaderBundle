@@ -17,7 +17,7 @@ class TwigTemplateAdmin extends Admin
                 ->add('template', null, array(
                     'required' => true,
                     'attr' => array(
-                        'class' => 'span12'
+                        'class' => 'span12 raindropTemplateTextarea'
                     )
                 ))
         ;
@@ -49,5 +49,17 @@ class TwigTemplateAdmin extends Admin
                 )
             ))
         ;
+    }
+
+    public function getTemplate($name)
+    {
+        switch ($name) {
+            case 'edit':
+                return 'RaindropTwigLoaderBundle::templateCRUD.html.twig';
+                break;
+            default:
+                return parent::getTemplate($name);
+                break;
+        }
     }
 }
