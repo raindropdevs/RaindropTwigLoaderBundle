@@ -14,7 +14,12 @@ class TwigTemplateAdmin extends Admin
         $formMapper
                 ->add('name', null, array('required' => true))
                 ->add('type', null, array('required' => false))
-                ->add('template', null, array('required' => true))
+                ->add('template', null, array(
+                    'required' => true,
+                    'attr' => array(
+                        'class' => 'span12'
+                    )
+                ))
         ;
     }
 
