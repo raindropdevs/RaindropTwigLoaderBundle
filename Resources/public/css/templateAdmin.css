@@ -13,3 +13,7 @@ root {
 .controls .raindropTemplateTextarea {
     min-height: 800px;
 }
+
+.CodeMirror {
+    font-size: 13px;
+}
