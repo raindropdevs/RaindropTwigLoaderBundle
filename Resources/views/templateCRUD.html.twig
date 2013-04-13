@@ -3,4 +3,16 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/raindroptwigloader/css/templateAdmin.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/raindropsyntaxhighlight/css/lib/codemirror.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/raindropsyntaxhighlight/css/theme/solarized.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/raindropsyntaxhighlight/js/lib/codemirror.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/raindropsyntaxhighlight/js/mode/xml/xml.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/raindropsyntaxhighlight/js/mode/javascript/javascript.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/raindropsyntaxhighlight/js/mode/css/css.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/raindropsyntaxhighlight/js/mode/htmlmixed/htmlmixed.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/raindroptwigloader/js/templateAdmin.js') }}"></script>
 {% endblock %}
