@@ -24,7 +24,7 @@ class TwigTemplate implements TemplateInterface
     protected $name;
 
     /**
-     * @ORM\Column
+     * @ORM\Column(nullable=true)
      */
     protected $type;
 
