@@ -15,7 +15,7 @@ class TwigTemplateAdmin extends Admin
                 ->add('name', null, array('required' => true))
                 ->add('type', null, array('required' => false))
                 ->add('template', null, array(
-                    'required' => true,
+                    'required' => false,
                     'attr' => array(
                         'class' => 'span12 raindropTemplateTextarea'
                     )
