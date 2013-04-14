@@ -29,7 +29,7 @@ var templateAdmin = (function () {
                 viewportMargin: Infinity
             });
 
-            editor.setSize(el.width() - 200, 500)
+            editor.setSize(el.width() - 200, 500);
         }
     };
 }());
