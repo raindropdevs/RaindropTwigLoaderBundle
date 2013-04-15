@@ -67,11 +67,13 @@ class RaindropTwigLoaderExtension extends Extension
                 ->addMethodCall('addPath', array($stdSfPath));
 
             // fix for knpmenubundle
-            $refl = new \ReflectionClass('Knp\Menu\ItemInterface');
-            $path = dirname($refl->getFileName()).'/Resources/views';
-            $container
-                ->getDefinition('raindrop_twig.loader.chain')
-                ->addMethodCall('addPath', array($path));
+            if (class_exists('Knp\Menu\ItemInterface')) {
+                $refl = new \ReflectionClass('Knp\Menu\ItemInterface');
+                $path = dirname($refl->getFileName()).'/Resources/views';
+                $container
+                    ->getDefinition('raindrop_twig.loader.chain')
+                    ->addMethodCall('addPath', array($path));
+            }
         }
     }
 
