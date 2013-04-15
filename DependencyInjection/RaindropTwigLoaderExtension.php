@@ -60,12 +60,18 @@ class RaindropTwigLoaderExtension extends Extension
 
             // @TODO bugfix: twig loader is not using default 'addMethodCall'
             // from symfony twig extension.
-            // can't figure out why... knpmenubundle works properly
             $reflClass = new \ReflectionClass('Symfony\Bridge\Twig\Extension\FormExtension');
             $stdSfPath = dirname(dirname($reflClass->getFileName())).'/Resources/views/Form';
             $container
                 ->getDefinition('raindrop_twig.loader.chain')
                 ->addMethodCall('addPath', array($stdSfPath));
+
+            // fix for knpmenubundle
+            $refl = new \ReflectionClass('Knp\Menu\ItemInterface');
+            $path = dirname($refl->getFileName()).'/Resources/views';
+            $container
+                ->getDefinition('raindrop_twig.loader.chain')
+                ->addMethodCall('addPath', array($path));
         }
     }
 
