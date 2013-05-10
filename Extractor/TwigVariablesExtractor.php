@@ -7,15 +7,17 @@ namespace Raindrop\TwigLoaderBundle\Extractor;
  *
  * @author teito
  */
-class TwigVariablesExtractor {
-
+class TwigVariablesExtractor
+{
     protected $twig;
 
-    public function __construct($twig) {
+    public function __construct($twig)
+    {
         $this->twig = $twig;
     }
 
-    public function extract($templateName) {
+    public function extract($templateName)
+    {
         $twigTemplate = $this->twig->getLoader()->getSource($templateName);
 
         $visitor = new VariableNodeVisitor;
@@ -30,5 +32,3 @@ class TwigVariablesExtractor {
         });
     }
 }
-
-?>

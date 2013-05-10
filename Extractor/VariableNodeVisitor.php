@@ -2,7 +2,6 @@
 
 namespace Raindrop\TwigLoaderBundle\Extractor;
 
-
 /**
  * Find out which variables are being use into a twig template
  *
