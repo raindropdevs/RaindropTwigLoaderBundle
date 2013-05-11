@@ -51,6 +51,10 @@
 
             <tag name="translation.extractor" alias="database" />
         </service>
+
+        <service id="raindrop.twig_loader.variable_extractor" class="Raindrop\TwigLoaderBundle\Extractor\TwigVariablesExtractor">
+            <argument type="service" id="twig" />
+        </service>
     </services>
 
 </container>

@@ -166,4 +166,30 @@ class TwigTemplate implements TemplateInterface
     {
         return sprintf("%s", $this->getName());
     }
+
+    /**
+     * Set created
+     *
+     * @param  \DateTime    $created
+     * @return TwigTemplate
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param  \DateTime    $updated
+     * @return TwigTemplate
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
 }
