@@ -14,14 +14,16 @@
     </parameters>
 
     <services>
-        <service id="raindrop_twig.loader.filesystem" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
+<!--         <service id="raindrop_twig.loader.filesystem" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
             <argument type="service" id="templating.locator" />
             <argument type="service" id="templating.name_parser" />
-        </service>
+        </service> -->
 
         <service id="raindrop_twig.loader.database" class="%raindrop_twig_loader_bundle.db_twig_loader%">
             <argument type="service" id="templating.locator" />
             <argument type="service" id="templating.name_parser" />
+
+            <tag name="twig.loader" />
 
             <call method="setEntityManager">
                 <argument type="service" id="doctrine.orm.entity_manager"/>

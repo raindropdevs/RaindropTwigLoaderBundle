@@ -20,19 +20,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $treeBuilder->root('raindrop_twig_loader"')
             ->children()
-                ->arrayNode('chain')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->arrayNode('loaders_by_id')
-                            ->defaultValue(array(
-                                'raindrop_twig.loader.filesystem' => 10,
-                                'raindrop_twig.loader.database' => 20
-                            ))
-                            ->useAttributeAsKey('id')
-                            ->prototype('scalar')->end()
-                        ->end()
-                        ->scalarNode('replace_twig_loader')->defaultTrue()->end()
-                    ->end()
+                ->arrayNode('database')
                 ->end()
             ->end()
         ;
