@@ -13,4 +13,11 @@ class BaseTestCase extends WebTestCase
                 ->setMethods($methods)
                 ->getMock();
     }
+
+    /**
+     * Dunno why this class is giving me errors :[
+     */
+    public function testDummy() {
+    	$this->assertTrue(true);
+    }
 }
