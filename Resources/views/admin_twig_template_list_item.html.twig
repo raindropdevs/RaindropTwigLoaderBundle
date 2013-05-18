@@ -1,3 +1,25 @@
-<td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}">
-    <pre>{{ value|slice(0, 150) }}</pre>
-</td>
+{% if value|length > 500 %}
+
+    {% set length = value|length %}
+    {% set start = length - 250 %}
+
+    {% if start < 0 %}
+      {% set start = 0 %}
+    {% endif %}
+
+    <td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}">
+        <pre style="font-size:10px;">{{ value|slice(0, 250) }}</pre>
+        <pre style="font-size:10px;">...</pre>
+        <pre style="font-size:10px;">{{ value|slice(start, length) }}</pre>
+    </td>
+
+{% else %}
+
+    <td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}">
+        <pre style="font-size:10px;">{{ value }}</pre>
+    </td>
+
+{% endif %}
+
+
+
