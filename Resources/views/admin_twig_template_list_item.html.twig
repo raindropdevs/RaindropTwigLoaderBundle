@@ -1,16 +1,14 @@
-{% if value|length > 500 %}
+{% if value|length > 200 %}
 
     {% set length = value|length %}
-    {% set start = length - 250 %}
+    {% set start = length - 100 %}
 
     {% if start < 0 %}
       {% set start = 0 %}
     {% endif %}
 
     <td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}">
-        <pre style="font-size:10px;">{{ value|slice(0, 250) }}</pre>
-        <pre style="font-size:10px;">...</pre>
-        <pre style="font-size:10px;">{{ value|slice(start, length) }}</pre>
+        <pre style="font-size:10px;">{{ value|slice(0, 100) }} <br><span style="color:#c00">...</span><br> {{ value|slice(start, length) }}</pre>
     </td>
 
 {% else %}
