@@ -50,8 +50,6 @@
             <call method="setClassEntity">
                 <argument>%raindrop_twig_loader_bundle.entity_class%</argument>
             </call>
-
-            <tag name="translation.extractor" alias="database" />
         </service>
 
         <service id="raindrop.twig_loader.variable_extractor" class="Raindrop\TwigLoaderBundle\Extractor\TwigVariablesExtractor">
