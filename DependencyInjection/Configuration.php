@@ -20,6 +20,9 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $treeBuilder->root('raindrop_twig_loader"')
             ->children()
+                ->scalarNode('boost')
+                    ->defaultFalse()
+                ->end()
                 ->arrayNode('chain')
                     ->addDefaultsIfNotSet()
                     ->children()

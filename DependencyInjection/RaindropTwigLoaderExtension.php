@@ -45,6 +45,14 @@ class RaindropTwigLoaderExtension extends Extension
             $container->setAlias('twig.loader.filesystem', 'raindrop_twig.loader.filesystem');
 
             /**
+             * Setting up boost config
+             */
+            $container
+                ->getDefinition('raindrop_twig.loader.database')
+                ->addMethodCall('setBoost', array($config['boost']))
+            ;
+
+            /**
              * Add the loaders defined in the configuration mapping.
              * Since twig chain loader doesn't feature priority sorting,
              * sort them before appending.

@@ -8,7 +8,7 @@ class DatabaseTwigLoader implements
 {
     const DATABASE_ID = 'database:';
 
-    protected $idLength, $entityManager, $classEntity, $liipTheme, $hit = array();
+    protected $idLength, $entityManager, $classEntity, $liipTheme, $boost, $hit = array();
 
     public function __construct()
     {
@@ -23,6 +23,11 @@ class DatabaseTwigLoader implements
     public function setClassEntity($classEntity)
     {
         $this->classEntity = $classEntity;
+    }
+
+    public function setBoost($boost)
+    {
+        $this->boost = $boost;
     }
 
     /**
@@ -79,6 +84,10 @@ class DatabaseTwigLoader implements
         // check if template exists
         if ($this->isDatabaseTemplate($name)) {
 
+            if ($this->boost) {
+                return true;
+            }
+
             if (isset($this->hit[$name])) {
                 return true;
             }
@@ -121,6 +130,11 @@ class DatabaseTwigLoader implements
     public function isFresh($name, $time)
     {
         if ($this->isDatabaseTemplate($name)) {
+
+            if ($this->boost) {
+                return true;
+            }
+
             return $this->getLastUpdated($name) <= $time;
         }
 
