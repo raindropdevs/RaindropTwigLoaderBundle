@@ -23,27 +23,18 @@ class RaindropTwigLoaderExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
+        /**
+        * Setting up boost config
+        */
+        $container
+            ->getDefinition('raindrop_twig.loader.database')
+            ->addMethodCall('setBoost', array($config['boost']))
+        ;
+
         if (class_exists('Sonata\\AdminBundle\\Admin\\Admin')) {
             $loader->load('admin.xml');
         }
 
         return;
-    }
-
-    protected function sortLoaders($config)
-    {
-        $loaders = array();
-
-        foreach ($config['chain']['loaders_by_id'] as $name => $priority) {
-            if (!isset($loaders[$priority])) {
-                $loaders[$priority] = array();
-            }
-
-            $loaders[$priority] []= $name;
-        }
-
-        ksort($loaders);
-
-        return $loaders;
     }
 }
