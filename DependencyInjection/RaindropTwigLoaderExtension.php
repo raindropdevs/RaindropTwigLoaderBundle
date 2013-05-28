@@ -23,6 +23,10 @@ class RaindropTwigLoaderExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
+
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
         /**
         * Setting up boost config
         */
