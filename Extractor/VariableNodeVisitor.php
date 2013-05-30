@@ -41,7 +41,7 @@ class VariableNodeVisitor implements \Twig_NodeVisitorInterface
 
         if (
             $node instanceof \Twig_Node_Expression_Name
-        ) {
+) {
             // extract variables nodes
             $this->messages [$node->getAttribute('name')]= true;
         }
