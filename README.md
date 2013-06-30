@@ -68,7 +68,8 @@ This configures twig chain loader and append those specified above.
 
 ``` php
 class myController {
-	public function indexAction() {
+	public function indexAction()
+    {
 		return $this->render('database:contact_us_en');
 	}
 }
